@@ -1,3 +1,5 @@
+package default;
+
 public interface TreeInterface<E>
 {
     /** Return true if the element is in the tree */

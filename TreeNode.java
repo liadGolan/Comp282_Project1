@@ -1,3 +1,5 @@
+package default;
+
 private static class TreeNode
 {
     Object element;
