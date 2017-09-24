@@ -8,6 +8,11 @@ class Tree<E> implements TreeInterface<E>
     {
 
     }
+
+    public Tree(TreeNode root)
+    {
+        this.root = root;
+    }
     /** Return true if the element is in the tree */
     public boolean search(E e);
 
