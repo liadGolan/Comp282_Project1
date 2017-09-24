@@ -25,7 +25,15 @@ class Tree<E> implements TreeInterface<E>
 
     /** Inorder traversalfrom the root */
     public void inOrder(){
-
+        if(root.left != null){
+            Tree current = new Tree(root.left);
+            current.inOrder();
+        }
+        System.out.println(root.element.toString());
+        if(root.right != null){
+            Tree current = new Tree(root.right);
+            current.inOrder();
+        }
     }
 
     /** postorder traversal from the root */
