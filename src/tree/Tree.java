@@ -28,7 +28,20 @@ class Tree<E> implements TreeInterface<E>
     public void inorder();
 
     /** postorder traversal from the root */
-    public void postorder();
+    public void postorder()
+    {
+        if(root.left != null)
+        {
+            Tree current = new Tree(root.left);
+            current.postorder();
+        }
+        if(root.right != null)
+        {
+            Tree current = new Tree(root.right);
+            current.postorder();
+        }
+        System.out.println(root.element);
+    }
 
     /** preordertraversal from the root */
     public void preorder();
