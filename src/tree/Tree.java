@@ -2,6 +2,12 @@ package tree;
 
 class Tree<E> implements TreeInterface<E>
 {
+    TreeNode root;
+
+    public Tree()
+    {
+
+    }
     /** Return true if the element is in the tree */
     public boolean search(E e);
 
