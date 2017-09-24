@@ -3,7 +3,6 @@ package tree;
 class Tree<E> implements TreeInterface<E>
 {
     TreeNode root;
-
     public Tree()
     {
 
@@ -20,7 +19,9 @@ class Tree<E> implements TreeInterface<E>
     public boolean delete(E e);
 
     /** Inorder traversalfrom the root */
-    public void inorder();
+    public void inOrder(){
+
+    }
 
     /** postorder traversal from the root */
     public void postorder();
