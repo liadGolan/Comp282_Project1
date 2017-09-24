@@ -1,4 +1,4 @@
-package default;
+package tree;
 
 public interface TreeInterface<E>
 {
