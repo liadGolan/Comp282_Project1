@@ -1,6 +1,5 @@
 package tree;
-
-private static class TreeNode
+ class TreeNode
 {
     Object element;
     TreeNode left;
