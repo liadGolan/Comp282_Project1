@@ -31,8 +31,17 @@ class Tree<E> implements TreeInterface<E>
     public void postorder();
 
     /** preordertraversal from the root */
-    public void preorder();
-
+    public void preorder(){
+        System.out.println(root.element.toString());
+        if(root.left != null){
+            Tree current = new Tree(root.left);
+            current.preorder();
+        }
+        if(root.right != null){
+            Tree current = new Tree(root.right);
+            current.preorder();
+        }
+    }
     /** Get the number of nodes in the tree*/
     public int getSize();
 
