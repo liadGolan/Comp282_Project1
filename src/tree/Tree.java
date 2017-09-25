@@ -13,12 +13,57 @@ class Tree<E> implements TreeInterface<E>
     {
         this.root = root;
     }
+
     /** Return true if the element is in the tree */
     public boolean search(E e);
 
     /** Insert element e into the binary search tree.
      * Return true if the element is inserted successfully */
-    public boolean insert(E e);
+    public boolean insert(E e)
+    {
+        if(root == null)
+        {
+            root = new TreeNode(e);
+            return true;
+        }
+        else if(root.element.toString().compareTo(e.toString()) < 0)
+        {
+            if(root.left != null)
+            {
+                Tree current = new Tree(root.left);
+                current.insert(e);
+            }
+            else
+            {
+                TreeNode left = new TreeNode(e);
+                root.left = left;
+                return true;
+            }
+        }
+        else if(root.element.toString().compareTo(e.toString()) == 0)
+        {
+            return false;
+        }
+        else if(root.element.toString().compareTo(e.toString()) > 0)
+        {
+            if(root.right != null)
+            {
+                Tree current = new Tree(root.right);
+                current.insert(e);
+            }
+            else
+            {
+                TreeNode right = new TreeNode(e);
+                root.right = right;
+                return true;
+            }
+        }
+        else
+        {
+            return false;
+        }
+
+    }
 
     /** Delete the specified element from the tree.
      *  Return true if the element is deleted successfully */
