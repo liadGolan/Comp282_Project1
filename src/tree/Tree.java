@@ -130,5 +130,15 @@ class Tree<E> implements TreeInterface<E>
     }
 
     /**return true if the treeis empty*/
-    public boolean isEmpty();
+    public boolean isEmpty()
+    {
+        if(root.element == null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
