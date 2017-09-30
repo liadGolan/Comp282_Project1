@@ -113,8 +113,35 @@ class Tree<E> implements TreeInterface<E>
         }
     }
     /** Get the number of nodes in the tree*/
-    public int getSize();
+    public int getSize()
+    {
+        int size = 1;
+
+        if(root.left != null)
+        {
+            Tree current = new Tree(root.left);
+            size += current.getSize();
+        }
+
+        if(root.right != null)
+        {
+            Tree current = new Tree(root.right);
+            size += current.getSize();
+        }
+
+        return size;
+    }
 
     /**return true if the treeis empty*/
-    public boolean isEmpty();
+    public boolean isEmpty()
+    {
+        if(root.element == null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
