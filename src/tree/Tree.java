@@ -75,24 +75,24 @@ class Tree<E> implements TreeInterface<E>
         /** SEARCHING FOR ELEMENT  */
         while(curr != null){
             /**left side of tree*/
-            if(e<curr.element){
+            if(e.toString().compareTo(curr.element.toString())<0){
                 parent = curr;
                 curr = curr.left;
             }
             /**right side of tree*/
-            else if(e>curr.element){
+            else if(e.toString().compareTo(curr.element.toString())>0){
                 parent = curr;
                 curr = curr.right;
             }
             else{ break; } //its in curr
         }
         /**CASE ONE: No left child*/
-        if(current.left == null){
+        if(curr.left == null){
             if(parent == null){ //curr is the root node
                 root = curr.right;
             }
             else{
-                if(e<parent.element){
+                if(e.toString().compareTo(curr.element.toString())<0){
                     parent.left = curr.right;
                 }
                 else{
@@ -113,21 +113,18 @@ class Tree<E> implements TreeInterface<E>
             curr.element = rightMost.element; //replaces curr element with rightmost element
 
             /**get rid of rightmost node */
-            if(parentOfRightMost.right== rightMost){
-                parentOfRightMost.right = rightMost.left;
+            if(rightMostParent.right== rightMost){
+                rightMostParent.right = rightMost.left;
             }
             else{
-                parentOfRightMost.left = rightMost.left;
+                rightMostParent.left = rightMost.left;
             }
-            size--;
-            return true; //element was deleted
+
+
         }
-
-
-
-
-
+        return true; //element was deleted
     }
+
 
     /** Inorder traversalfrom the root */
     public void inOrder(){
