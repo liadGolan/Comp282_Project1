@@ -14,10 +14,13 @@ public class TreeRunner
         test.insert("Adam");
         test.insert("Jone");
         test.insert("Peter");
+        test.insert("Daniel");
 
         test.inorder();
         System.out.println("");
         test.postorder();
+        System.out.println("");
+        test.postOrderNoRecursion();
         System.out.println("");
         test.preorder();
         System.out.println("");
