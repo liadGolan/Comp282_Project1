@@ -29,8 +29,9 @@ public class TreeRunner
         System.out.println(test.search("Adams"));
 
         System.out.println("\n" + test.getSize());
+        System.out.println("\n" + test.getNumberofNonLeaves());
+      // test.delete("George");
 
-//        test.delete("George");
 
         System.out.println("");
 
