@@ -24,11 +24,21 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
             if(root.left == null){
                 return false;
             }
-            else if(){
-                
+            else{
+                Tree curr =  new Tree (root.left);
+                return curr.search(e);
             }
         }
-
+        else if(e.compareTo((E) root.element)>0) {
+            if(root.right == null){
+                return false;
+            }
+            else{
+                Tree curr = new Tree (root.right);
+                return curr.search(e);
+            }
+        }
+        return false;
     }
 
     /** Insert element e into the binary search tree.
@@ -40,7 +50,7 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
             root = new TreeNode(e);
             return true;
         }
-        else if(root.element.toString().compareTo(e.toString()) < 0)
+        else if(((E) root.element).compareTo(e) < 0)
         {
             if(root.left != null)
             {
@@ -54,11 +64,11 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
                 return true;
             }
         }
-        else if(root.element.toString().compareTo(e.toString()) == 0)
+        else if(((E)root.element).compareTo(e) == 0)
         {
             return false;
         }
-        else if(root.element.toString().compareTo(e.toString()) > 0)
+        else if(((E) root.element).compareTo(e) > 0)
         {
             if(root.right != null)
             {
@@ -87,12 +97,12 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
         /** SEARCHING FOR ELEMENT  */
         while(curr != null){
             /**left side of tree*/
-            if(e.toString().compareTo(curr.element.toString())<0){
+            if(e.compareTo((E) curr.element)<0){
                 parent = curr;
                 curr = curr.left;
             }
             /**right side of tree*/
-            else if(e.toString().compareTo(curr.element.toString())>0){
+            else if(e.compareTo((E)curr.element)>0){
                 parent = curr;
                 curr = curr.right;
             }
@@ -104,7 +114,7 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
                 root = curr.right;
             }
             else{
-                if(e.toString().compareTo(curr.element.toString())<0){
+                if(e.compareTo((E)curr.element)<0){
                     parent.left = curr.right;
                 }
                 else{
@@ -144,7 +154,7 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
             Tree current = new Tree(root.left);
             current.inorder();
         }
-        System.out.println(root.element.toString());
+        System.out.println(((E) root.element));
         if(root.right != null){
             Tree current = new Tree(root.right);
             current.inorder();
@@ -164,12 +174,12 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
             Tree current = new Tree(root.right);
             current.postorder();
         }
-        System.out.println(root.element);
+        System.out.println(((E) root.element));
     }
 
     /** preordertraversal from the root */
     public void preorder(){
-        System.out.println(root.element.toString());
+        System.out.println(((E) root.element));
         if(root.left != null){
             Tree current = new Tree(root.left);
             current.preorder();
@@ -202,7 +212,7 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
     /**return true if the treeis empty*/
     public boolean isEmpty()
     {
-        if(root.element == null)
+        if(((E) root.element) == null)
         {
             return true;
         }
