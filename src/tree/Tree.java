@@ -1,6 +1,6 @@
 package tree;
 
-class Tree<E> implements TreeInterface<E>
+class Tree <E extends Comparable  <E> > implements TreeInterface<E>
 {
     TreeNode root;
     public Tree()
@@ -15,7 +15,21 @@ class Tree<E> implements TreeInterface<E>
     }
 
     /** Return true if the element is in the tree */
-    public boolean search(E e);
+    public boolean search(E e){
+        if(e == root.element)
+        {
+            return true;
+        }
+        else if(e.compareTo((E) root.element)<0){
+            if(root.left == null){
+                return false;
+            }
+            else if(){
+                
+            }
+        }
+
+    }
 
     /** Insert element e into the binary search tree.
      * Return true if the element is inserted successfully */
@@ -125,15 +139,15 @@ class Tree<E> implements TreeInterface<E>
 
 
     /** Inorder traversalfrom the root */
-    public void inOrder(){
+    public void inorder(){
         if(root.left != null){
             Tree current = new Tree(root.left);
-            current.inOrder();
+            current.inorder();
         }
         System.out.println(root.element.toString());
         if(root.right != null){
             Tree current = new Tree(root.right);
-            current.inOrder();
+            current.inorder();
         }
     }
 
