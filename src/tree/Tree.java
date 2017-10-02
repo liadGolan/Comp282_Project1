@@ -15,8 +15,17 @@ class Tree<E> implements TreeInterface<E>
 
     /** Return true if the element is in the tree */
     public boolean search(E e){
-        Tree current = new Tree (root.left);
-        if()
+
+        if(root == null)
+        {
+            return false;
+        }
+        else if(e == root){
+            return true;
+        }
+        else if(e.compareTo(root)<0){
+
+        }
     }
 
     /** Insert element e into the binary search tree.
