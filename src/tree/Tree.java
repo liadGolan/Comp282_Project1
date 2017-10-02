@@ -207,24 +207,25 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
         return size;
     }
     /**Returns the number of non-leafnodes; Author: Edgar Cano*/
-    public int getNumberofNonLeaves(){
+    public int getNumberofNonLeaves() {
 
-        int count = 1;
-
-        if(root.left != null)
-        {
-            Tree current = new Tree(root.left);
-            if (root.left !=null){
-            count += current.getNumberofNonLeaves();}
+        int leftSum = 0;
+        int rightSum = 0;
+        if (root.left == null && root.right == null) {
+            return 0;
+        } else {
+            if (root.left != null) {
+                Tree left = new Tree(root.left);
+                 leftSum += 1+ left.getNumberofNonLeaves();
+            }
+            if (root.right != null){
+                Tree right = new Tree(root.right);
+                rightSum += 1+right.getNumberofNonLeaves();
         }
 
-        if(root.right != null)
-        {
-            Tree current = new Tree(root.right);
-            if (root.right !=null){
-                count  +=current.getNumberofNonLeaves();}
-        }
-        return count-1;
+    }
+        return rightSum+leftSum;
+
     }
 
 

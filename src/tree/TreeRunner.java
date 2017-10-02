@@ -14,6 +14,7 @@ public class TreeRunner
         test.insert("Adam");
         test.insert("Jone");
         test.insert("Peter");
+        test.insert("Daniel");
 
         test.inorder();
         System.out.println("");
@@ -26,8 +27,8 @@ public class TreeRunner
         System.out.println(test.search("Adams"));
 
         System.out.println("\n" + test.getSize());
-
-//        test.delete("George");
+        System.out.println("\n" + test.getNumberofNonLeaves());
+      // test.delete("George");
 
         System.out.println("");
 
