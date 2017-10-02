@@ -72,10 +72,9 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
                 return true;
             }
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
+
     }
 
     /** Delete the specified element from the tree.
