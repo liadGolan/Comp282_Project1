@@ -27,4 +27,7 @@ public interface TreeInterface<E>
 
     /**return true if the treeis empty*/
     public boolean isEmpty();
+
+    /**method for nonrecursive inorder method - Jemma*/
+    public void inorderNoRecursion();
 }

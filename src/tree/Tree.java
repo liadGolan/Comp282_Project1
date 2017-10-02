@@ -1,5 +1,7 @@
 package tree;
 
+import java.util.Stack;
+
 class Tree <E extends Comparable  <E> > implements TreeInterface<E>
 {
     TreeNode root;
@@ -219,6 +221,29 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
         else
         {
             return false;
+        }
+    }
+
+    /**method for nonrecursive inorder method - Jemma*/
+    public void inorderNoRecursion(){
+        Stack stackInorder = new Stack(); //creates null stack
+        stackInorder.push((E)root.element);
+
+        while(true){ //will loop till it hits false
+            while((E) root.element != null){
+                stackInorder.push((E) root.element);
+                root = root.left;
+            }
+            if(stackInorder.isEmpty()){
+                return;
+            }else{
+                root.element = stackInorder.pop();
+                while (!stackInorder.isEmpty())
+                {
+                    System.err.println(stackInorder.pop());
+                }
+                root = root.right;
+            }
         }
     }
 }
