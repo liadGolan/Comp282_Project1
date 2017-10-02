@@ -6,6 +6,7 @@ class Tree<E> implements TreeInterface<E>
     public Tree()
     {
 
+
     }
 
     public Tree(TreeNode root)
@@ -78,7 +79,64 @@ class Tree<E> implements TreeInterface<E>
 
     /** Delete the specified element from the tree.
      *  Return true if the element is deleted successfully */
-    public boolean delete(E e);
+    public boolean delete(E e){
+
+        TreeNode parent = new TreeNode(null);
+        TreeNode curr =  new TreeNode(root);
+
+        /** SEARCHING FOR ELEMENT  */
+        while(curr != null){
+            /**left side of tree*/
+            if(e.toString().compareTo(curr.element.toString())<0){
+                parent = curr;
+                curr = curr.left;
+            }
+            /**right side of tree*/
+            else if(e.toString().compareTo(curr.element.toString())>0){
+                parent = curr;
+                curr = curr.right;
+            }
+            else{ break; } //its in curr
+        }
+        /**CASE ONE: No left child*/
+        if(curr.left == null){
+            if(parent == null){ //curr is the root node
+                root = curr.right;
+            }
+            else{
+                if(e.toString().compareTo(curr.element.toString())<0){
+                    parent.left = curr.right;
+                }
+                else{
+                    parent.right = curr.right;
+                }
+            }
+        }
+        /**CASE TWO: current node has a left child*/
+        else{
+
+            TreeNode rightMostParent =  new TreeNode(curr);
+            TreeNode rightMost = new TreeNode(curr.left);
+
+            while(rightMost.right !=null){
+                rightMostParent = rightMost.right;
+            }
+
+            curr.element = rightMost.element; //replaces curr element with rightmost element
+
+            /**get rid of rightmost node */
+            if(rightMostParent.right== rightMost){
+                rightMostParent.right = rightMost.left;
+            }
+            else{
+                rightMostParent.left = rightMost.left;
+            }
+
+
+        }
+        return true; //element was deleted
+    }
+
 
     /** Inorder traversalfrom the root */
     public void inOrder(){
