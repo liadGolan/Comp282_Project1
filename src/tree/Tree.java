@@ -52,15 +52,14 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
         }
         else if(((E) root.element).compareTo(e) < 0)
         {
-            if(root.left != null)
+            if(root.right != null)
             {
-                Tree current = new Tree(root.left);
+                Tree current = new Tree(root.right);
                 current.insert(e);
             }
             else
             {
-                TreeNode left = new TreeNode(e);
-                root.left = left;
+                root.right = new TreeNode(e);
                 return true;
             }
         }
@@ -70,15 +69,14 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
         }
         else if(((E) root.element).compareTo(e) > 0)
         {
-            if(root.right != null)
+            if(root.left != null)
             {
-                Tree current = new Tree(root.right);
+                Tree current = new Tree(root.left);
                 current.insert(e);
             }
             else
             {
-                TreeNode right = new TreeNode(e);
-                root.right = right;
+                root.left = new TreeNode(e);
                 return true;
             }
         }
@@ -92,7 +90,7 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
     public boolean delete(E e){
 
         TreeNode parent = new TreeNode(null);
-        TreeNode curr =  new TreeNode(root);
+        TreeNode curr =  new TreeNode(root.element);
 
         /** SEARCHING FOR ELEMENT  */
         while(curr != null){
@@ -212,7 +210,7 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
     /**return true if the treeis empty*/
     public boolean isEmpty()
     {
-        if(((E) root.element) == null)
+        if(root == null)
         {
             return true;
         }
