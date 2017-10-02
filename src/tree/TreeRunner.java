@@ -27,7 +27,7 @@ public class TreeRunner
 
         System.out.println("\n" + test.getSize());
 
-//        test.delete("George");
+         test.delete("Peter");
 
         System.out.println("");
 
