@@ -58,10 +58,8 @@ class Tree<E> implements TreeInterface<E>
                 return true;
             }
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
 
     }
 
