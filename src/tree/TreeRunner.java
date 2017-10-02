@@ -6,7 +6,7 @@ public class TreeRunner
     {
         Tree test = new Tree();
 
-        System.out.println(test.isEmpty());
+//        System.out.println(test.isEmpty());
 
         test.insert("George");
         test.insert("Michael");
@@ -15,25 +15,27 @@ public class TreeRunner
         test.insert("Jone");
         test.insert("Peter");
 
-        test.inorder();
-        System.out.println("");
+//        test.inorder();
+//        System.out.println("");
         test.postorder();
         System.out.println("");
-        test.preorder();
-        System.out.println("");
-
-        System.out.println(test.search("Adam"));
-        System.out.println(test.search("Adams"));
-
-        System.out.println("\n" + test.getSize());
-
-//        test.delete("George");
-
-        System.out.println("");
-
-        System.out.println(test.isEmpty());
-
-        test.inorder();
+        test.postOrderNoRecursion();
+//        System.out.println("");
+//        test.preorder();
+//        System.out.println("");
+//
+//        System.out.println(test.search("Adam"));
+//        System.out.println(test.search("Adams"));
+//
+//        System.out.println("\n" + test.getSize());
+//
+////        test.delete("George");
+//
+//        System.out.println("");
+//
+//        System.out.println(test.isEmpty());
+//
+//        test.inorder();
 
 
 
