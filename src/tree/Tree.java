@@ -1,5 +1,7 @@
 package tree;
 
+import java.util.Stack;
+
 class Tree <E extends Comparable  <E> > implements TreeInterface<E>
 {
     TreeNode root;
@@ -249,5 +251,41 @@ return 0;
         {
             return false;
         }
+    }
+
+    public void postOrderNoRecursion()
+    {
+        Stack postStack = new Stack();
+        Stack pushed = new Stack();
+        do {
+            while (root != null)
+            {
+                if (root.right != null && pushed.search(root.right) < 1) {
+                    postStack.push(root.right);
+                }
+                postStack.push(root);
+                root = root.left;
+            }
+
+            root = (TreeNode) postStack.pop();
+
+            if(root.right != null && pushed.search(root.right) < 1)
+            {
+                if (root.right.equals(postStack.peek()))
+                {
+                    postStack.pop();
+                    postStack.push(root);
+                    root = root.right;
+                }
+            }
+            else
+            {
+                    System.out.println(root.element);
+                    pushed.push(root);
+                    root = null;
+            }
+
+        } while(!postStack.empty());
+
     }
 }

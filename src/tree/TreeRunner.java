@@ -20,6 +20,8 @@ public class TreeRunner
         System.out.println("");
         test.postorder();
         System.out.println("");
+        test.postOrderNoRecursion();
+        System.out.println("");
         test.preorder();
         System.out.println("");
 
