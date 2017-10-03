@@ -108,42 +108,42 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
             }
             else{ break; } //its in curr
         }
-        /**CASE ONE: No left child*/
-        if(curr.left == null){
-            if(parent == null){ //curr is the root node
-                root = curr.right;
-            }
-            else{
-                if(e.compareTo((E)curr.element)<0){
-                    parent.left = curr.right;
+        /**CASE ONE: leaf deletion*/
+            if(curr.left == null && curr.right == null) {
+                if (e.compareTo((E) parent.element) < 0) {
+                    parent.left = null;
+                } else {
+                    parent.right = null;
                 }
-                else{
+            }
+
+            /**CASE TWO: One child*/
+                else if (curr.left == null) { //if it is a right child
                     parent.right = curr.right;
                 }
-            }
-        }
-        /**CASE TWO: current node has a left child*/
-        else{
 
-            TreeNode rightMostParent =  new TreeNode(curr);
-            TreeNode rightMost = new TreeNode(curr.left);
+                 else if (curr.right == null) {
+                    parent.left = curr.left;
+                }
 
-            while(rightMost.right !=null){
-                rightMostParent = rightMost.right;
-            }
+            /**CASE THREE: Two children */
+                else if (curr.left != null && curr.right != null){
+              TreeNode favoriteChild = new TreeNode(root.element);
+                    //diamond right -> all the way left
+                curr = curr.right;
+                while (curr.left !=null){ //find replacement node
+                    favoriteChild = curr.left; //favorite child =  node found after one found after  doing left->right
+                }
+                //make favoriteChild's children the same as parent
+                favoriteChild.right = parent.right;
+                favoriteChild.left = parent.left;
+                while (curr.left != null) { //move travel to favorite child's previous position
+                    curr = curr.left;
+                }
+                parent.left =null; //node was deleted
 
-            curr.element = rightMost.element; //replaces curr element with rightmost element
+                }
 
-            /**get rid of rightmost node */
-            if(rightMostParent.right== rightMost){
-                rightMostParent.right = rightMost.left;
-            }
-            else{
-                rightMostParent.left = rightMost.left;
-            }
-
-
-        }
         return true; //element was deleted
     }
 
@@ -179,7 +179,7 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
 
     /** preordertraversal from the root */
     public void preorder(){
-        System.out.println(((E) root.element));
+        System.out.println((E) root.element);
         if(root.left != null){
             Tree current = new Tree(root.left);
             current.preorder();
@@ -208,6 +208,37 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
 
         return size;
     }
+    /**Returns the number of non-leafnodes; Author: Edgar Cano*/
+    public int getNumberofNonLeaves() {
+
+
+        if (root.left == null && root.right == null) {
+            return 0;
+        } else {
+            if(root.left !=null && root.right !=null)
+            {
+            Tree left = new Tree(root.left);
+            Tree right = new Tree(root.right);
+
+           return 1+left.getNumberofNonLeaves()+right.getNumberofNonLeaves();
+            }else if(root.left != null && root.right == null)
+            {
+                Tree left = new Tree(root.left);
+                return 1+left.getNumberofNonLeaves();
+
+            }
+            else if(root.left == null && root.right !=null){
+                Tree right = new Tree(root.right);
+                return 1 +right.getNumberofNonLeaves();
+            }
+
+    }
+return 0;
+    }
+
+
+
+
 
     /**return true if the treeis empty*/
     public boolean isEmpty()
@@ -222,17 +253,62 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
         }
     }
 
-    /**method for nonrecursive inorder method - Jemma*/
-    public void inorderNoRecursion(){
+
+    public void postOrderNoRecursion() {
+        Stack postStack = new Stack();
+        Stack pushed = new Stack();
+        do {
+            while (root != null) {
+                if (root.right != null && pushed.search(root.right) < 1) {
+                    postStack.push(root.right);
+                }
+                postStack.push(root);
+                root = root.left;
+            }
+
+            root = (TreeNode) postStack.pop();
+
+            if (root.right != null && pushed.search(root.right) < 1) {
+                if (root.right.equals(postStack.peek())) {
+                    postStack.pop();
+                    postStack.push(root);
+                    root = root.right;
+                }
+            } else {
+                System.out.println(root.element);
+                pushed.push((E) root);
+                root = null;
+            }
+
+        } while (!postStack.empty());
+    }
+
+        /**method for nonrecursive inorder method - Jemma*/
+    public void inorderNoRecursion() {
         Stack stackInorder = new Stack(); //creates null stack
-        stackInorder.push(root.element);
+        Stack pushedInorder = new Stack();
 
-        //push the root into stack
-        //check to see if the root has a left node and check if it has a left node
-        //once it hit null, push the node into the stack and pop
-        //push the parent into the stack and pop
-        //check if the parent node has a right node. if it does push that right node into the stack and pop
-       // if it doesn't have a right node then go to the predecessor push and pop
+        do {
+            while (root != null) {
+                //check to see if the root has a left node and check if it has a left node
+                if (root.left != null && pushedInorder.search(root.left) < 1) {
+                    //once it hit null, push the node into the stack
+                    stackInorder.push(root.left);
+                }
+                if (root.left != null && pushedInorder.search(root.left) < 1) {
+                    if (root.left.equals(stackInorder.peek())) {
+                        stackInorder.pop();
+                        stackInorder.push(root);
+                        root = root.left;
+                    }
+                } else {
+                    System.out.println(root.element);
+                    pushedInorder.push(root);
+                    root = null;
+                }
 
+            }
+        }
+        while (!stackInorder.empty()) ;
     }
 }

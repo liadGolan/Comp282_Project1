@@ -29,5 +29,5 @@ public interface TreeInterface<E>
     public boolean isEmpty();
 
     /**method for nonrecursive inorder method - Jemma*/
-    public void inorderNoRecursion();
+//    public void inorderNoRecursion();
 }
