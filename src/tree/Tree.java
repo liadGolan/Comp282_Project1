@@ -1,5 +1,7 @@
 package tree;
 
+import groovy.ui.SystemOutputInterceptor;
+
 import java.util.Stack;
 
 class Tree <E extends Comparable  <E> > implements TreeInterface<E>
@@ -89,83 +91,47 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
 
     /** Delete the specified element from the tree.
      *  Return true if the element is deleted successfully */
-    public boolean delete(E e){
+    public boolean delete(E e) {
+        Tree parent = new Tree(null);
+        Tree curr = new Tree(root);
 
-        TreeNode parent = new TreeNode(null);
-        TreeNode curr =  new TreeNode(root.element);
+
 
         /** SEARCHING FOR ELEMENT  */
-        while(curr != null){
+        while (curr != null) {
             /**left side of tree*/
-            if(e.compareTo((E) curr.element)<0){
-                parent = curr;
-                curr = curr.left;
+            if (e.compareTo((E) curr.root.element) < 0 && root.left != null) {
+
+                parent = new Tree(curr.root);
+                 curr = new Tree(root.left);
+                System.out.println(curr.root.element);
+
             }
             /**right side of tree*/
-            else if(e.compareTo((E)curr.element)>0){
-                parent = curr;
-                curr = curr.right;
-            }
-            else{ break; }//its in curr
+            else if (e.compareTo((E) curr.root.element) > 0 && root.right  !=null) {
+                parent = new  Tree(curr.root);
+                curr =new Tree(root.right);
+                System.out.println(curr.root.element);
+            } else {
+
+                break;
+            }//its in curr
         }
-
-
-        //CASE ONE: leaf deletion
-            if(curr.left == null && curr.right == null) {
-                if (e.compareTo((E) parent.element) < 0) {
-                    parent.left = null;
-                } else {
-                    parent.right = null;
-                }
-            }
-
-            /**CASE TWO: One child*/
-                else if (curr.left == null) { //if it is a right child
-                    parent.right = curr.right;
-                }
-
-                 else if (curr.right == null) {
-                    parent.left = curr.left;
-                }
-
-            /**CASE THREE: Two children */
-                else if (curr.left != null && curr.right != null){
-              TreeNode favoriteChild = new TreeNode(root.element);
-                    //diamond right -> all the way left
-                curr = curr.right;
-                while (curr.left !=null){ //find replacement node
-                    favoriteChild = curr.left; //favorite child =  node found after one found after  doing left->right
-                }
-                //make favoriteChild's children the same as parent
-                favoriteChild.right = parent.right;
-                favoriteChild.left = parent.left;
-                while (curr.left != null) { //move travel to favorite child's previous position
-                    curr = curr.left;
-                }
-                parent.left =null; //node was deleted
-
-                }
-
-//        TreeNode parent = new TreeNode(null);
-//        TreeNode curr =  new TreeNode(root.element);
-//
-//        /** SEARCHING FOR ELEMENT  */
-//        while(curr != null){
-//            /**left side of tree*/
-//            if(e.compareTo((E) curr.element)<0){
-//                parent = curr;
-//                curr = curr.left;
-//            }
-//            /**right side of tree*/
-//            else if(e.compareTo((E)curr.element)>0){
-//                parent = curr;
-//                curr = curr.right;
-//            }
-//            else{ break; } //its in curr
+        System.out.println(curr.root.element);
+//        if(curr.left==null && curr.right == null) //case 0
+//        {
+//            if(parent.left ==curr)
+//                parent.left = null;
+//            else
+//                parent.right = null;
 //        }
-//        /**CASE ONE: leaf deletion*/
-//        if(curr.left == null && curr.right == null) {
-//            if (parent.left ==curr) {
+
+
+
+
+//        //CASE ONE: leaf deletion
+//        if (curr.left == null && curr.right == null) {
+//            if (e.compareTo((E) parent.element) < 0) {
 //                parent.left = null;
 //            } else {
 //                parent.right = null;
@@ -173,20 +139,18 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
 //        }
 //
 //        /**CASE TWO: One child*/
-//        else if (curr.left == null &&curr.right != null) { //if it is a right child
+//        else if (curr.left == null) { //if it is a right child
 //            parent.right = curr.right;
-//        }
-//
-//        else if (curr.right == null && curr.left !=null) {
+//        } else if (curr.right == null) {
 //            parent.left = curr.left;
 //        }
 //
 //        /**CASE THREE: Two children */
-//        else if (curr.left != null && curr.right != null){
+//        else if (curr.left != null && curr.right != null) {
 //            TreeNode favoriteChild = new TreeNode(root.element);
 //            //diamond right -> all the way left
 //            curr = curr.right;
-//            while (curr.left !=null){ //find replacement node
+//            while (curr.left != null) { //find replacement node
 //                favoriteChild = curr.left; //favorite child =  node found after one found after  doing left->right
 //            }
 //            //make favoriteChild's children the same as parent
@@ -195,12 +159,13 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
 //            while (curr.left != null) { //move travel to favorite child's previous position
 //                curr = curr.left;
 //            }
-//            parent.left =null; //node was deleted
+//            parent.left = null; //node was deleted
 //
 //        }
-//
-//        return true; //element was deleted
+//        return false;
+        return true;
     }
+
 
 
     /** Inorder traversalfrom the root */
