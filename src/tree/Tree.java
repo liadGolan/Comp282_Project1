@@ -283,32 +283,4 @@ return 0;
         } while (!postStack.empty());
     }
 
-        /**method for nonrecursive inorder method - Jemma*/
-    public void inorderNoRecursion() {
-        Stack stackInorder = new Stack(); //creates null stack
-        Stack pushedInorder = new Stack();
-
-        do {
-            while (root != null) {
-                //check to see if the root has a left node and check if it has a left node
-                if (root.left != null && pushedInorder.search(root.left) < 1) {
-                    //once it hit null, push the node into the stack
-                    stackInorder.push(root.left);
-                }
-                if (root.left != null && pushedInorder.search(root.left) < 1) {
-                    if (root.left.equals(stackInorder.peek())) {
-                        stackInorder.pop();
-                        stackInorder.push(root);
-                        root = root.left;
-                    }
-                } else {
-                    System.out.println(root.element);
-                    pushedInorder.push(root);
-                    root = null;
-                }
-
-            }
-        }
-        while (!stackInorder.empty()) ;
-    }
 }
