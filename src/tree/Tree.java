@@ -1,6 +1,6 @@
 package tree;
 
-import groovy.ui.SystemOutputInterceptor;
+
 
 import java.util.Stack;
 
@@ -18,7 +18,9 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
         this.root = root;
     }
 
-    /** Return true if the element is in the tree */
+    /** Return true if the element is in the tree
+     * Author: Jemma Tiongson */
+
     public boolean search(E e){
         if(e == root.element)
         {
@@ -46,7 +48,8 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
     }
 
     /** Insert element e into the binary search tree.
-     * Return true if the element is inserted successfully */
+     * Return true if the element is inserted successfully
+     * Author: Liad Golan*/
     public boolean insert(E e)
     {
         if(root == null)
@@ -91,7 +94,8 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
 
     /** Delete the specified element from the tree.
 
-     *  Return true if the element is deleted successfully */
+     *  Return true if the element is deleted successfully
+     *  Author: Edgar Cano*/
     public boolean delete(E e) {
         Tree parent = new Tree(null);
         Tree curr = new Tree(root);
@@ -170,7 +174,8 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
 
 
 
-    /** Inorder traversalfrom the root */
+    /** Inorder traversalfrom the root
+     * Author: Jemma Tiongson*/
     public void inorder(){
         if(root.left != null){
             Tree current = new Tree(root.left);
@@ -183,7 +188,8 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
         }
     }
 
-    /** postorder traversal from the root */
+    /** postorder traversal from the root
+     * Author: Edgar Cano */
     public void postorder()
     {
         if(root.left != null)
@@ -199,7 +205,8 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
         System.out.println(((E) root.element));
     }
 
-    /** preordertraversal from the root */
+    /** preordertraversal from the root
+     * Author: Liad Golan */
     public void preorder(){
         System.out.println((E) root.element);
         if(root.left != null){
@@ -211,7 +218,8 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
             current.preorder();
         }
     }
-    /** Get the number of nodes in the tree*/
+    /** Get the number of nodes in the tree
+     * Author: Liad Golan*/
     public int getSize()
     {
         int size = 1;
@@ -230,7 +238,8 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
 
         return size;
     }
-    /**Returns the number of non-leafnodes; Author: Edgar Cano*/
+    /**Returns the number of non-leafnodes
+     * Author: Edgar Cano*/
     public int getNumberofNonLeaves() {
 
 
@@ -262,7 +271,8 @@ return 0;
 
 
 
-    /**return true if the treeis empty*/
+    /**return true if the treeis empty
+     * Author: Liad Golan */
     public boolean isEmpty()
     {
         if(root == null)
@@ -275,7 +285,7 @@ return 0;
         }
     }
 
-
+/**Author: Liad Golan*/
     public void postOrderNoRecursion() {
         Stack postStack = new Stack();
         Stack pushed = new Stack();
