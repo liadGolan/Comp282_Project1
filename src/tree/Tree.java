@@ -225,23 +225,14 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
     /**method for nonrecursive inorder method - Jemma*/
     public void inorderNoRecursion(){
         Stack stackInorder = new Stack(); //creates null stack
-        stackInorder.push((E)root.element);
+        stackInorder.push(root.element);
 
-        while(true){ //will loop till it hits false
-            while((E) root.element != null){
-                stackInorder.push((E) root.element);
-                root = root.left;
-            }
-            if(stackInorder.isEmpty()){
-                return;
-            }else{
-                root.element = stackInorder.pop();
-                while (!stackInorder.isEmpty())
-                {
-                    System.err.println(stackInorder.pop());
-                }
-                root = root.right;
-            }
-        }
+        //push the root into stack
+        //check to see if the root has a left node and check if it has a left node
+        //once it hit null, push the node into the stack and pop
+        //push the parent into the stack and pop
+        //check if the parent node has a right node. if it does push that right node into the stack and pop
+       // if it doesn't have a right node then go to the predecessor push and pop
+
     }
 }

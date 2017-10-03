@@ -35,6 +35,10 @@ public class TreeRunner
 
         test.inorder();
 
+        //test for inorderNonrecursive
+        System.out.println("_______________________________________");
+        test.inorderNoRecursion();
+
 
 
 
