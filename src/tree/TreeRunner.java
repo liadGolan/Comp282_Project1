@@ -8,7 +8,7 @@ public class TreeRunner
         Tree testTwo = new Tree();
         Tree testThree = new Tree();
 
-        System.out.println(test.isEmpty());
+      // System.out.println(test.isEmpty());
 
         test.insert("George");
         test.insert("Michael");
@@ -26,6 +26,7 @@ public class TreeRunner
         testTwo.insert("Peter");
         testTwo.insert("Daniel");
 
+
         testThree.insert("George");
         testThree.insert("Michael");
         testThree.insert("Tom");
@@ -42,23 +43,35 @@ public class TreeRunner
         System.out.println("");
         test.preorder();
         System.out.println("");
+>>>>>>> bd0d363c04c20e9bcd619386c1a1c366107d8396
 
-        System.out.println(test.search("Adam"));
-        System.out.println(test.search("Adams"));
+//        System.out.println(test.search("Adam"));
+//        System.out.println(test.search("Adams"));
 
+<<<<<<< HEAD
+//        System.out.println("\n" + test.getSize());
+//        System.out.println("\n" + test.getNumberofNonLeaves());
+
+        test.delete("Peter");
+=======
         System.out.println("\n" + test.getSize());
         System.out.println("\n" + test.getNumberofNonLeaves());
        // test.delete("Peter");
+>>>>>>> bd0d363c04c20e9bcd619386c1a1c366107d8396
 
-        System.out.println("");
+       // System.out.println("");
 
-        System.out.println(test.isEmpty());
+       // System.out.println(test.isEmpty());
 
+<<<<<<< HEAD
+        //test.inorder();
+=======
         testThree.inorder();
 
         //test for inorderNonrecursive
         System.out.println("_______________________________________");
 //        test.inorderNoRecursion();
+>>>>>>> bd0d363c04c20e9bcd619386c1a1c366107d8396
 
 
 
