@@ -314,5 +314,20 @@ return 0;
 
         } while (!postStack.empty());
     }
+    /** Author: Jemma Tiongson */
+    public void inorderNoRecursion(){
+        Stack stackInorder = new Stack(); //creates null stack
+        TreeNode curr = root;
+        while (!stackInorder.isEmpty() || curr != null) {
+            if (curr != null) {
+                stackInorder.push(curr);
+                curr = curr.left;
+            } else {
+                TreeNode node = (TreeNode) stackInorder.pop();
+                System.out.print("\n"+node.element);
+                curr = node.right;
+            }
+        }
+    }
 
 }
