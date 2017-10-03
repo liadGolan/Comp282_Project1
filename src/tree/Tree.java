@@ -90,10 +90,60 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
     /** Delete the specified element from the tree.
      *  Return true if the element is deleted successfully */
     public boolean delete(E e){
-        if(root == null){
-            return root;
+        TreeNode parent = new TreeNode(null);
+        TreeNode curr =  new TreeNode(root.element);
+
+        /** SEARCHING FOR ELEMENT  */
+        while(curr != null){
+            /**left side of tree*/
+            if(e.compareTo((E) curr.element)<0){
+                parent = curr;
+                curr = curr.left;
+            }
+            /**right side of tree*/
+            else if(e.compareTo((E)curr.element)>0){
+                parent = curr;
+                curr = curr.right;
+            }
+            else{ break; }//its in curr
         }
 
+
+        //CASE ONE: leaf deletion
+            if(curr.left == null && curr.right == null) {
+                if (e.compareTo((E) parent.element) < 0) {
+                    parent.left = null;
+                } else {
+                    parent.right = null;
+                }
+            }
+
+            /**CASE TWO: One child*/
+                else if (curr.left == null) { //if it is a right child
+                    parent.right = curr.right;
+                }
+
+                 else if (curr.right == null) {
+                    parent.left = curr.left;
+                }
+
+            /**CASE THREE: Two children */
+                else if (curr.left != null && curr.right != null){
+              TreeNode favoriteChild = new TreeNode(root.element);
+                    //diamond right -> all the way left
+                curr = curr.right;
+                while (curr.left !=null){ //find replacement node
+                    favoriteChild = curr.left; //favorite child =  node found after one found after  doing left->right
+                }
+                //make favoriteChild's children the same as parent
+                favoriteChild.right = parent.right;
+                favoriteChild.left = parent.left;
+                while (curr.left != null) { //move travel to favorite child's previous position
+                    curr = curr.left;
+                }
+                parent.left =null; //node was deleted
+
+                }
 //        TreeNode parent = new TreeNode(null);
 //        TreeNode curr =  new TreeNode(root.element);
 //
@@ -182,7 +232,7 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
 
     /** preordertraversal from the root */
     public void preorder(){
-        System.out.println(((E) root.element));
+        System.out.println((E) root.element);
         if(root.left != null){
             Tree current = new Tree(root.left);
             current.preorder();
@@ -256,13 +306,12 @@ return 0;
         }
     }
 
-    public void postOrderNoRecursion()
-    {
+
+    public void postOrderNoRecursion() {
         Stack postStack = new Stack();
         Stack pushed = new Stack();
         do {
-            while (root != null)
-            {
+            while (root != null) {
                 if (root.right != null && pushed.search(root.right) < 1) {
                     postStack.push(root.right);
                 }
@@ -272,23 +321,19 @@ return 0;
 
             root = (TreeNode) postStack.pop();
 
-            if(root.right != null && pushed.search(root.right) < 1)
-            {
-                if (root.right.equals(postStack.peek()))
-                {
+            if (root.right != null && pushed.search(root.right) < 1) {
+                if (root.right.equals(postStack.peek())) {
                     postStack.pop();
                     postStack.push(root);
                     root = root.right;
                 }
-            }
-            else
-            {
-                    System.out.println(root.element);
-                    pushed.push(root);
-                    root = null;
+            } else {
+                System.out.println(root.element);
+                pushed.push((E) root);
+                root = null;
             }
 
-        } while(!postStack.empty());
-
+        } while (!postStack.empty());
     }
+
 }
