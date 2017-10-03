@@ -108,7 +108,7 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
         }
         /**CASE ONE: leaf deletion*/
         if(curr.left == null && curr.right == null) {
-            if (e.compareTo((E) parent.element) < 0) {
+            if (parent.left ==curr) {
                 parent.left = null;
             } else {
                 parent.right = null;
@@ -116,11 +116,11 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
         }
 
         /**CASE TWO: One child*/
-        else if (curr.left == null) { //if it is a right child
+        else if (curr.left == null &&curr.right != null) { //if it is a right child
             parent.right = curr.right;
         }
 
-        else if (curr.right == null) {
+        else if (curr.right == null && curr.left !=null) {
             parent.left = curr.left;
         }
 
