@@ -41,6 +41,10 @@ public class TreeRunner
         System.out.println("\n" + test.getNumberofNonLeaves());
        test.delete("Peter");
 
+<<<<<<< HEAD
+         test.delete("Peter");
+=======
+>>>>>>> 2b69fd8331a4491e527eb0fb57b631ac3b37d318
 
         System.out.println("");
 
