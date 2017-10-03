@@ -14,10 +14,13 @@ public class TreeRunner
         test.insert("Adam");
         test.insert("Jone");
         test.insert("Peter");
+        test.insert("Daniel");
 
         test.inorder();
         System.out.println("");
         test.postorder();
+        System.out.println("");
+        test.postOrderNoRecursion();
         System.out.println("");
         test.preorder();
         System.out.println("");
@@ -26,8 +29,13 @@ public class TreeRunner
         System.out.println(test.search("Adams"));
 
         System.out.println("\n" + test.getSize());
+        System.out.println("\n" + test.getNumberofNonLeaves());
+      // test.delete("George");
 
+<<<<<<< HEAD
          test.delete("Peter");
+=======
+>>>>>>> 2b69fd8331a4491e527eb0fb57b631ac3b37d318
 
         System.out.println("");
 
