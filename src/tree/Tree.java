@@ -90,6 +90,7 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
     }
 
     /** Delete the specified element from the tree.
+
      *  Return true if the element is deleted successfully */
     public boolean delete(E e) {
         Tree parent = new Tree(null);
@@ -135,8 +136,8 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
 //                parent.left = null;
 //            } else {
 //                parent.right = null;
+
 //            }
-//        }
 //
 //        /**CASE TWO: One child*/
 //        else if (curr.left == null) { //if it is a right child
@@ -165,6 +166,7 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
 //        return false;
         return true;
     }
+
 
 
 
@@ -199,7 +201,7 @@ class Tree <E extends Comparable  <E> > implements TreeInterface<E>
 
     /** preordertraversal from the root */
     public void preorder(){
-        System.out.println(((E) root.element));
+        System.out.println((E) root.element);
         if(root.left != null){
             Tree current = new Tree(root.left);
             current.preorder();
@@ -273,13 +275,12 @@ return 0;
         }
     }
 
-    public void postOrderNoRecursion()
-    {
+
+    public void postOrderNoRecursion() {
         Stack postStack = new Stack();
         Stack pushed = new Stack();
         do {
-            while (root != null)
-            {
+            while (root != null) {
                 if (root.right != null && pushed.search(root.right) < 1) {
                     postStack.push(root.right);
                 }
@@ -289,23 +290,19 @@ return 0;
 
             root = (TreeNode) postStack.pop();
 
-            if(root.right != null && pushed.search(root.right) < 1)
-            {
-                if (root.right.equals(postStack.peek()))
-                {
+            if (root.right != null && pushed.search(root.right) < 1) {
+                if (root.right.equals(postStack.peek())) {
                     postStack.pop();
                     postStack.push(root);
                     root = root.right;
                 }
-            }
-            else
-            {
-                    System.out.println(root.element);
-                    pushed.push(root);
-                    root = null;
+            } else {
+                System.out.println(root.element);
+                pushed.push(root);
+                root = null;
             }
 
-        } while(!postStack.empty());
-
+        } while (!postStack.empty());
     }
+
 }
